@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool isGround = true;
+    public static bool isGround = true;
 
-    public static PlayerMovement Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
     void Update()
     {
         if (isGround==true)

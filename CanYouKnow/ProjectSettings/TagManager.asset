@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Selectable
+  - True
+  - False
+  - StartPoint
+  - FinishPoint
   layers:
   - Default
   - TransparentFX
