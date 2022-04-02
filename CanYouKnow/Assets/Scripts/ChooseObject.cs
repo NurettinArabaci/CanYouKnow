@@ -9,7 +9,8 @@ public class ChooseObject : MonoBehaviour
 {
     public ChooseObjectType objType;
     Vector3 gap;
-    public float limitX,limitY;
+    float limitX = 4.5f;
+    float limitY=10;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -39,6 +40,11 @@ public class ChooseObject : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -limitX, limitX),
                                          Mathf.Clamp(transform.position.y, 0.7f, limitY),
                                          Mathf.Clamp(transform.position.z,3.5f,5));
+    }
+
+    private void OnMouseUp()
+    {
+        this.gameObject.GetComponent<PlayerMovement>().enabled = false; 
     }
 
     void SuccessControl(ChooseObjectType objeEnumTypeOne, ChooseObjectType objeEnumTypeTwo)
