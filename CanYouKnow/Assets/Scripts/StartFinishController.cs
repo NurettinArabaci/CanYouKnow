@@ -9,13 +9,24 @@ public class StartFinishController : MonoBehaviour
     {
         if (other.tag == "StartPoint")
         {
+            if(gameObject.tag== "FinishObj")
+            {
+                GameManager.Instance.LevelCompleteMethod();
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                Timer.Instance.gameObject.SetActive(true);
+            }
 
-            Timer.Instance.gameObject.SetActive(true);
+            
         }
 
         else if (other.tag == "FinishPoint")
         {
-            //gameover butonunu aktif et
+            GameManager.Instance.GameOverMethod();
+            
         }
+       
     }
 }

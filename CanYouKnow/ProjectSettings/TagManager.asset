@@ -9,6 +9,8 @@ TagManager:
   - False
   - StartPoint
   - FinishPoint
+  - GameOverButton
+  - FinishObj
   layers:
   - Default
   - TransparentFX

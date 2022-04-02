@@ -12,6 +12,13 @@ public class ChooseObject : MonoBehaviour
     float limitX = 4.5f;
     float limitY=10;
 
+    GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Timer.Instance.gameObject.SetActive(false);
@@ -30,7 +37,7 @@ public class ChooseObject : MonoBehaviour
     void OnMouseDown()
     {
         gap = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        
+        PlayerMovement.isGround = false;
     }
 
     void OnMouseDrag()
@@ -42,16 +49,16 @@ public class ChooseObject : MonoBehaviour
                                          Mathf.Clamp(transform.position.z,3.5f,5));
     }
 
-    private void OnMouseUp()
-    {
-        this.gameObject.GetComponent<PlayerMovement>().enabled = false; 
-    }
+    
 
     void SuccessControl(ChooseObjectType objeEnumTypeOne, ChooseObjectType objeEnumTypeTwo)
     {
+        
         if (objType == objeEnumTypeOne)
         {
-            Debug.Log("Puan");
+            GameManager.scoreAmount+=10;
+            gameManager.score.GetComponent<Text>().text = GameManager.scoreAmount.ToString();
+
             PlayerMovement.isGround = true;
             GroundMovement.scrollSpeed = 1.5f;  
         }
@@ -59,9 +66,9 @@ public class ChooseObject : MonoBehaviour
         else if (objType == objeEnumTypeTwo)
         {
             Debug.Log("Oyunu kaybettin");
-            //Retry butonunu aç.
-            //puan tablosunu göster.
-            //Player Movement durdur.
+            GameManager.Instance.GameOverMethod();
+           
         }
+        GetComponent<PlayerMovement>().enabled = false;
     }
 }

@@ -28,7 +28,7 @@ public class Timer : MonoBehaviour
   
     IEnumerator CounterBack()
     {
-        while (currentTime>=0)
+        while (currentTime>=-0.5f)
         {
             counterText.text = currentTime.ToString();
             
@@ -36,7 +36,8 @@ public class Timer : MonoBehaviour
             currentTime--;
             if (currentTime<=0)
             {
-
+                GameManager.Instance.GameOverMethod();
+                gameObject.SetActive(false);
             }
             
         }
